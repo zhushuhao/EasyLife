@@ -9,6 +9,17 @@ import d.dao.easylife.ui.view.IMainView;
 public interface INewsPresenter {
 
     void attachView(IMainView view);
+
+    /**
+     * 刷新时加载
+     */
     void loadNews();
+
+    /**
+     * 下拉加载更多
+     *
+     * @param time 时间戳
+     */
+    void loadMore(long time);
     void detachView(IMainView view);
 }
