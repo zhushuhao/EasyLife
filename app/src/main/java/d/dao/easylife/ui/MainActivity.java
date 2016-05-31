@@ -27,6 +27,8 @@ import java.util.List;
 import d.dao.easylife.R;
 import d.dao.easylife.adapter.NewsAdapter;
 import d.dao.easylife.bean.news.BaseNewsData;
+import d.dao.easylife.constants.BaseUrl;
+import d.dao.easylife.manager.NavigationManager;
 import d.dao.easylife.presenter.impl.NewsPresenterImpl;
 import d.dao.easylife.ui.view.IMainView;
 import d.dao.easylife.utils.ReservoirUtils;
@@ -166,7 +168,10 @@ public class MainActivity extends BaseToolbarActivity
         this.mAdapter.setOnItemClickListener(new NewsAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString(BaseUrl.WEBVIEW_TITLE,mList.get(position).getTitle());
+                bundle.putString(BaseUrl.WEBVIEW_URL,mList.get(position).getArticle_url());
+                NavigationManager.gotoActivity(mContext,WebViewActivity.class,bundle);
             }
         });
         this.mAdapter.setOnItemLongClickListener(new NewsAdapter.OnRecyclerViewItemLongClickListener() {

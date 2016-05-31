@@ -12,4 +12,9 @@ public class BaseUrl {
     public static final String DATA_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
 
+
+    public static final String WEBVIEW_TITLE = "title";
+    public static final String WEBVIEW_URL = "url";
+
+
 }
