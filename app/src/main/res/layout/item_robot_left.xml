@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="100px"
+        android:layout_height="100px" />
+    <TextView
+        android:textSize="32px"
+        android:layout_marginLeft="20px"
+        android:layout_toRightOf="@id/iv_photo"
+        android:text="新一代机器人"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_below="@id/iv_photo"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="-40px"
+        android:layout_toRightOf="@id/iv_photo"
+        android:maxWidth="400px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_robot_msg_tag"
+        android:gravity="center_vertical"
+        android:text="重新加载重新加载重新加载重新加载重新加载重新加载重新加载"
+        android:textColor="#fff"
+        android:textSize="32px" />
+</RelativeLayout>

@@ -43,4 +43,8 @@ dependencies {
     //数据缓存
     compile 'com.anupcowkur:reservoir:2.1'
 
+    //图片处理
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+
 }

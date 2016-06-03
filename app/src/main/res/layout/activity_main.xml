@@ -20,11 +20,25 @@
             android:id="@+id/swipe"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </android.support.v7.widget.RecyclerView>
+                <RelativeLayout
+                    android:id="@+id/content_main_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </android.support.v7.widget.RecyclerView>
+                </RelativeLayout>
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    layout="@layout/error_page" />
+            </FrameLayout>
+
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 

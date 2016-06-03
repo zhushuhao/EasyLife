@@ -11,7 +11,7 @@ public class News implements Serializable {
 
     public String status;
     public String desc;
-    public ArrayList<BaseNewsData> detail;
+    public ArrayList<BaseNewsData> detail;//每次只有两天的数据
 
     @Override
     public String toString() {

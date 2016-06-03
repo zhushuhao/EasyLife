@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="20px"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.WebViewActivity"
+    tools:showIn="@layout/activity_weather">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/content_main_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65px"
+                android:background="@drawable/bg_weather_card"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100px">
+
+                    <TextView
+                        android:id="@+id/tag_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="10px"
+                        android:paddingRight="30px"
+                        android:paddingTop="10px"
+                        android:text="今日天气"
+                        android:textColor="#1f2cde"
+                        android:textSize="40px" />
+
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="20px"
+                        android:gravity="center"
+                        android:text="2016-06-03"
+                        android:textColor="#1f2cde"
+                        android:textSize="36px" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px">
+
+                    <TextView
+                        android:id="@+id/tag_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_praise_tag"
+                        android:gravity="center"
+                        android:paddingBottom="10px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="10px"
+                        android:text="温度"
+                        android:textColor="#fff"
+                        android:textSize="30px" />
+
+                    <TextView
+                        android:id="@+id/tv_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80px"
+                        android:layout_marginLeft="30px"
+                        android:layout_toRightOf="@id/tag_temperature"
+                        android:gravity="center"
+                        android:text="29℃~19℃"
+                        android:textColor="#000"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="-10px"
+                        android:gravity="center"
+                        android:text="阴"
+                        android:textColor="#1f2cde"
+                        android:textSize="40px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px">
+
+                    <TextView
+                        android:id="@+id/tag_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_stamp_tag"
+                        android:gravity="center"
+                        android:paddingBottom="10px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="10px"
+                        android:text="白天"
+                        android:textColor="#fff"
+                        android:textSize="30px" />
+
+                    <TextView
+                        android:id="@+id/tv_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80px"
+                        android:layout_marginLeft="30px"
+                        android:layout_toRightOf="@id/tag_day"
+                        android:gravity="center"
+                        android:text="无持续风向 ≤3级"
+                        android:textColor="#000"
+                        android:textSize="40px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px">
+
+                    <TextView
+                        android:id="@+id/tag_night"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_author_tag"
+                        android:gravity="center"
+                        android:paddingBottom="10px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="10px"
+                        android:text="夜间"
+                        android:textColor="#fff"
+                        android:textSize="30px" />
+
+                    <TextView
+                        android:id="@+id/tv_night"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80px"
+                        android:layout_marginLeft="30px"
+                        android:layout_toRightOf="@id/tag_night"
+                        android:gravity="center"
+                        android:text="无持续风向 ≤3级"
+                        android:textColor="#000"
+                        android:textSize="40px" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80px"
+                android:background="@drawable/bg_weather_card"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100px">
+
+                    <TextView
+                        android:id="@+id/tag_weather_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="10px"
+                        android:paddingRight="30px"
+                        android:paddingTop="10px"
+                        android:text="明日天气"
+                        android:textColor="#1f2cde"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_date_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="20px"
+                        android:gravity="center"
+                        android:text="2016-06-04"
+                        android:textColor="#1f2cde"
+                        android:textSize="36px" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px">
+
+                    <TextView
+                        android:id="@+id/tag_temperature_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_praise_tag"
+                        android:gravity="center"
+                        android:paddingBottom="10px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="10px"
+                        android:text="温度"
+                        android:textColor="#fff"
+                        android:textSize="30px" />
+
+                    <TextView
+                        android:id="@+id/tv_temperature_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80px"
+                        android:layout_marginLeft="30px"
+                        android:layout_toRightOf="@id/tag_temperature_tomorrow"
+                        android:gravity="center"
+                        android:text="29℃~19℃"
+                        android:textColor="#000"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_weather_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="-10px"
+                        android:gravity="center"
+                        android:text="多云"
+                        android:textColor="#1f2cde"
+                        android:textSize="36px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px">
+
+                    <TextView
+                        android:id="@+id/tag_day_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_stamp_tag"
+                        android:gravity="center"
+                        android:paddingBottom="10px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="10px"
+                        android:text="白天"
+                        android:textColor="#fff"
+                        android:textSize="30px" />
+
+                    <TextView
+                        android:id="@+id/tv_day_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80px"
+                        android:layout_marginLeft="30px"
+                        android:layout_toRightOf="@id/tag_day_tomorrow"
+                        android:gravity="center"
+                        android:text="无持续风向 ≤3级"
+                        android:textColor="#000"
+                        android:textSize="40px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px">
+
+                    <TextView
+                        android:id="@+id/tag_night_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_author_tag"
+                        android:gravity="center"
+                        android:paddingBottom="10px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="10px"
+                        android:text="夜间"
+                        android:textColor="#fff"
+                        android:textSize="30px" />
+
+                    <TextView
+                        android:id="@+id/tv_night_tomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80px"
+                        android:layout_marginLeft="30px"
+                        android:layout_toRightOf="@id/tag_night_tomorrow"
+                        android:gravity="center"
+                        android:text="无持续风向 ≤3级"
+                        android:textColor="#000"
+                        android:textSize="40px" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/error_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+</LinearLayout>

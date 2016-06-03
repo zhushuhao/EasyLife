@@ -26,23 +26,18 @@ public class CacheManager {
 
 
     /**
-     * 储存新闻数据
-     *
-     * @param data
-     * @param remove false:和原有的数据一起保存下来
-     *               true:先把原有的数据清除,再添加
+     * 保存WeatherActivity默认的城市
+     * @param city
      */
-    public void setNewsData(List<BaseNewsData> data, boolean remove) {
-
+    public void saveDefaultCity(String city){
+        mACache.put("city",city);
     }
-
     /**
-     * 储存新闻数据,和原来的数据一起储存
-     *
-     * @param data
+     * 获取WeatherActivity默认的城市
      */
-    public void setNewsData(List<BaseNewsData> data) {
-        setNewsData(data, false);
+    public String getDefaultCity(){
+        return mACache.getAsString("city");
     }
+
 
 }

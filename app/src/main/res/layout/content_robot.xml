@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20px"
+    tools:showIn="@layout/activity_robot">
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/recycler"
+       android:layout_marginBottom="160px"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+   </android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        >
+        <TextView
+            android:id="@+id/tv_send"
+            android:background="#f0f"
+            android:layout_alignParentRight="true"
+            android:text="发送"
+            android:paddingTop="20px"
+            android:paddingBottom="20px"
+            android:textSize="32px"
+            android:gravity="center"
+            android:layout_width="100px"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_send"
+            android:textSize="32px"
+            android:layout_marginRight="30px"
+            android:layout_toLeftOf="@id/tv_send"
+            android:layout_alignParentBottom="true"
+            android:hint="说点什么呢"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

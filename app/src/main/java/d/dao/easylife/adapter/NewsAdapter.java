@@ -16,6 +16,7 @@ import java.util.List;
 
 import d.dao.easylife.R;
 import d.dao.easylife.bean.news.BaseNewsData;
+import d.dao.easylife.utils.DateUtils;
 
 /**
  * Created by dao on 5/30/16.
@@ -37,15 +38,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.mInflater = LayoutInflater.from(mContext);
     }
 
-    public static String formatData(String dataFormat, long timeStamp) {
-        if (timeStamp == 0) {
-            return "";
-        }
-        String result = "";
-        SimpleDateFormat format = new SimpleDateFormat(dataFormat);
-        result = format.format(new Date(timeStamp));
-        return result;
-    }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,12 +50,10 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
-//        Log.e("position", "" + position);
         if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    int pos = holder.getLayoutPosition();
                     mOnItemClickListener.onItemClick(holder.itemView, position);
                 }
             });
@@ -73,7 +64,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-//                    int pos = holder.getLayoutPosition();
                     mOnItemLongClickListener.onItemLongClick(holder.itemView, position);
                     return false;
                 }
@@ -82,7 +72,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ((NewsHolder) holder).tv_title.setText(mList.get(position).getTitle());
         ((NewsHolder) holder).tv_source.setText(mList.get(position).getSource());
         long time = mList.get(position).getBehot_time();
-        String result = formatData("yyyy-MM-dd HH:mm:ss", time);
+        String result = DateUtils.formatDate("yyyy-MM-dd HH:mm:ss", time);
         ((NewsHolder) holder).tv_time.setText(result);
         ((NewsHolder) holder).tv_praise.setText("赞 " + mList.get(position).getDigg_count());
         ((NewsHolder) holder).tv_step.setText("踩 " + mList.get(position).getBury_count());
@@ -107,21 +97,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void setOnItemLongClickListener(OnRecyclerViewItemLongClickListener listener) {
         this.mOnItemLongClickListener = listener;
-    }
-
-    public void setList(List<BaseNewsData> list) {
-        this.mList.clear();
-        this.mList.addAll(list);
-    }
-
-    //插入数据到mList前面
-    public void addList(List<BaseNewsData> list) {
-        List<BaseNewsData> temp = list;
-        temp.addAll(mList);
-        this.mList.clear();
-        this.mList.addAll(temp);
-        temp.clear();
-        temp = null;
     }
 
     public interface OnRecyclerViewItemClickListener {
@@ -151,6 +126,11 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tv_step = (TextView) itemView.findViewById(R.id.tv_step);
             tv_collect = (TextView) itemView.findViewById(R.id.tv_collect);
         }
+    }
+
+    public void setList(List<BaseNewsData> list){
+        this.mList.clear();
+        this.mList.addAll(list);
     }
 
 }

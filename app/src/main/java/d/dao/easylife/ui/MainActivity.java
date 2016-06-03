@@ -15,6 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.anupcowkur.reservoir.ReservoirGetCallback;
 import com.camnter.easyrecyclerview.widget.decorator.EasyBorderDividerItemDecoration;
@@ -27,6 +30,7 @@ import java.util.List;
 import d.dao.easylife.R;
 import d.dao.easylife.adapter.NewsAdapter;
 import d.dao.easylife.bean.news.BaseNewsData;
+import d.dao.easylife.bean.weather.Weather;
 import d.dao.easylife.constants.BaseUrl;
 import d.dao.easylife.manager.NavigationManager;
 import d.dao.easylife.presenter.impl.NewsPresenterImpl;
@@ -37,7 +41,7 @@ import d.dao.easylife.utils.ToastUtils;
 import static android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 
 public class MainActivity extends BaseToolbarActivity
-        implements NavigationView.OnNavigationItemSelectedListener, IMainView, OnRefreshListener {
+        implements NavigationView.OnNavigationItemSelectedListener, IMainView,View.OnClickListener, OnRefreshListener {
     private Context mContext;
 
     private DrawerLayout mDrawer;// 抽屉
@@ -58,6 +62,10 @@ public class MainActivity extends BaseToolbarActivity
 
     private boolean firstRefresh = true;//是否第一次进入时自动刷新
 
+    private RelativeLayout rl_content_root;//主界面内容
+    private LinearLayout ll_error_root;//错误界面
+    private TextView tv_loadOnceMore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +82,10 @@ public class MainActivity extends BaseToolbarActivity
     protected void initViews(Bundle savedInstanceState) {
         mContext = MainActivity.this;
         reservoirUtils = ReservoirUtils.getInstance();
+
+        rl_content_root = (RelativeLayout) findViewById(R.id.content_main_root);
+        ll_error_root = (LinearLayout) findViewById(R.id.error_root);
+        tv_loadOnceMore = (TextView) findViewById(R.id.tv_load_once_more);
 
         //mDrawer
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -115,8 +127,6 @@ public class MainActivity extends BaseToolbarActivity
 //        mRecyclerView.addItemDecoration(new DividerItemDecoration(
 //                mContext, DividerItemDecoration.HORIZONTAL_LIST));
         mRecyclerView.addItemDecoration(dataDecoration);
-        //加载缓存信息
-        loadCacheData();
     }
 
 
@@ -129,38 +139,13 @@ public class MainActivity extends BaseToolbarActivity
         mSwipe.setRefreshing(true);
         isRefreshing = true;
         Log.e("laodnews", "开始加载");
-        this.mPresenter.loadNews();
+        this.mPresenter.loadNews(true);
     }
 
-    //加载缓存数据
-    private void loadCacheData() {
-        Type resultType = new TypeToken<List<BaseNewsData>>() {
-        }.getType();
-        reservoirUtils.get("news", resultType, new ReservoirGetCallback<List<BaseNewsData>>() {
-            @Override
-            public void onSuccess(List<BaseNewsData> object) {
-                if (object != null && object.size() > 0) {
-                    // 赋值给mList
-                    mList = object;
-                    //更新adapter
-                    mAdapter.setList(object);
-                    mAdapter.notifyDataSetChanged();
-                } else {
-                    //显示提示加载信息
-
-                }
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                //显示提示加载信息
-
-            }
-        });
-    }
 
     @Override
     protected void initListeners() {
+        tv_loadOnceMore.setOnClickListener(this);
         mNavigationView.setNavigationItemSelectedListener(this);
 
         mSwipe.setOnRefreshListener(this);
@@ -283,8 +268,40 @@ public class MainActivity extends BaseToolbarActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        mDrawer.closeDrawer(GravityCompat.START);
+        switch (item.getItemId()){
+            // 新闻
+            case R.id.nav_news:
+                mDrawer.closeDrawer(GravityCompat.START);
+                break;
+            //笑话
+            case R.id.nav_joke:
+                mDrawer.closeDrawer(GravityCompat.START);
+                NavigationManager.gotoActivity(mContext,JokeActivity.class);
+                break;
+            //天气
+            case R.id.nav_weather:
+                mDrawer.closeDrawer(GravityCompat.START);
+                NavigationManager.gotoActivity(mContext,WeatherActivity.class);
+                break;
+            //机器人
+            case R.id.nav_robot:
+                mDrawer.closeDrawer(GravityCompat.START);
+                NavigationManager.gotoActivity(mContext,RobotActivity.class);
+                break;
+
+            //常用查询
+            case R.id.nav_find:
+                break;
+
+            //分享
+            case R.id.nav_share:
+                break;
+
+            //设置
+            case R.id.nav_setting:
+                break;
+        }
+
         return true;
     }
 
@@ -296,8 +313,13 @@ public class MainActivity extends BaseToolbarActivity
     @Override
     public void onGetNewsSuccess(List<BaseNewsData> list) {
         Log.e("success", "success");
+        if(ll_error_root.getVisibility()==View.VISIBLE){
+            ll_error_root.setVisibility(View.GONE);
+        }
         isRefreshing = false;
-        this.mSwipe.setRefreshing(false);
+        if(this.mSwipe.isRefreshing()){
+            this.mSwipe.setRefreshing(false);
+        }
         if (firstRefresh) {
             firstRefresh = false;
             this.mList = list;
@@ -323,11 +345,18 @@ public class MainActivity extends BaseToolbarActivity
                 }
             }
             Log.e("list", "排除finish");
-            temp.addAll(mList);
-            mList.clear();
-            mList.addAll(temp);
-            mAdapter.setList(mList);
-            mAdapter.notifyDataSetChanged();
+            if(temp.size()==0){
+                //如果得到的十条数据都重复
+                ToastUtils.show(mContext,"暂无更新数据",0);
+            }else{
+                // 把所有刷新的到的数据放到原有的数据前面
+                temp.addAll(mList);
+                mList.clear();
+                mList.addAll(temp);
+                mAdapter.setList(mList);
+                mAdapter.notifyDataSetChanged();
+            }
+
         }
     }
 
@@ -341,7 +370,12 @@ public class MainActivity extends BaseToolbarActivity
         this.mSwipe.setRefreshing(false);
         ToastUtils.show(mContext, "刷新失败", 0);
 
-
+        //根据mList的大小来判断,如果为0,说明网络请求失败,获取缓存失败
+        if(mList == null || mList.size()==0){
+            ll_error_root.setVisibility(View.VISIBLE);
+        }else{//不为0,就不显示
+            ll_error_root.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -377,12 +411,27 @@ public class MainActivity extends BaseToolbarActivity
     public void onRefresh() {
         isRefreshing = true;
         Log.e("laodnews", "开始加载");
-        this.mPresenter.loadNews();
+        this.mPresenter.loadNews(false);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.detachView(this);
+        reservoirUtils.refresh("news",mList);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_load_once_more:
+                Log.e("loadoncemore","clicked");
+                mSwipe.setRefreshing(true);
+                isRefreshing = true;
+                Log.e("laodnews", "开始加载");
+                this.mPresenter.loadNews(false);
+                ll_error_root.setVisibility(View.GONE);
+                break;
+        }
     }
 }

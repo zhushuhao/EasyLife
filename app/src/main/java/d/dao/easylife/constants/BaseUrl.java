@@ -6,7 +6,12 @@ package d.dao.easylife.constants;
  */
 public class BaseUrl {
 
-    public static final String NEWS = "http://api.1-blog.com";//新闻接口
+    public static final String NEWS = "http://api.1-blog.com";//新闻,笑话1,天气接口
+    public static final String ROBOT = "http://op.juhe.cn";//机器人接口
+    public static final String ROBOT_KEY = "7f4589aca72ee731e41cb1325a87aab6";//机器人key
+
+
+
 
 
     public static final String DATA_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";

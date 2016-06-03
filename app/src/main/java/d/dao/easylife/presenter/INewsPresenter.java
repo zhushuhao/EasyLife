@@ -13,7 +13,7 @@ public interface INewsPresenter {
     /**
      * 刷新时加载
      */
-    void loadNews();
+    void loadNews(boolean firstRefresh);
 
     /**
      * 下拉加载更多

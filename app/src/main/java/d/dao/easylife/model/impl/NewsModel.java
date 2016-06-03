@@ -14,7 +14,7 @@ public class NewsModel implements INewsModel {
 
     private static NewsModel mInstance;
 
-    public static NewsModel getInstance() {
+    public synchronized static NewsModel getInstance() {
         if (mInstance == null) {
             mInstance = new NewsModel();
         }

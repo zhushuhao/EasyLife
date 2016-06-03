@@ -53,6 +53,8 @@ public class EasyLife {
 //                }
 //            });
 //        }
+
+
     }
 
     //单例
@@ -68,7 +70,6 @@ public class EasyLife {
 
     //
     public ApiService getApiService(String baseUrl) {
-
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
                 .addCallAdapterFactory(

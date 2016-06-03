@@ -17,10 +17,9 @@
         android:max="100"
         android:progress="0"
         android:progressDrawable="@drawable/layerlist_webview_progress"/>
+<WebView
+    android:id="@+id/webview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></WebView>
 
-    <WebView
-        android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layerType="hardware"/>
 </LinearLayout>

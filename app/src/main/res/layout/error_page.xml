@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:visibility="gone"
+    android:id="@+id/error_root"
+    >
+    <TextView
+        android:textSize="44px"
+        android:layout_marginTop="440px"
+        android:text="获取新闻失败点击加载"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_load_once_more"
+        android:layout_marginTop="40px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_collect_tag"
+        android:gravity="center"
+        android:paddingTop="20px"
+        android:paddingBottom="20px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:text="重新加载"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff"
+        android:textSize="36px" />
+</LinearLayout>
