@@ -19,6 +19,7 @@ public abstract class BaseToolbarActivity extends BaseAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 

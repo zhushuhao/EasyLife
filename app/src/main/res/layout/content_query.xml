@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.QueryActivity">
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/divide"
+        android:layout_alignParentTop="true">
+    </FrameLayout>
+
+    <View
+        android:id="@+id/divide"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/activity_group_radioGroup"
+        android:background="#cccccc"/>
+
+    <d.dao.easylife.ui.widget.AutoRadioGroup
+        android:id="@+id/activity_group_radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:checkedButton="@+id/order_process"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="6px"
+        android:paddingTop="6px">
+
+        <RadioButton
+            android:id="@+id/query_ip"
+            style="@style/main_tab_bottom"
+            android:drawableTop="@drawable/main_tab_1"
+            android:checked="true"
+            android:text="ip查询"/>
+
+        <RadioButton
+            android:id="@+id/query_express"
+            style="@style/main_tab_bottom"
+            android:checked="false"
+            android:drawableTop="@drawable/main_tab_2"
+            android:text="快递查询"/>
+
+        <RadioButton
+            android:id="@+id/query_third"
+            style="@style/main_tab_bottom"
+            android:checked="false"
+            android:drawableTop="@drawable/main_tab_3"
+            android:text="门店管理"/>
+
+        <RadioButton
+            android:id="@+id/query_forth"
+            style="@style/main_tab_bottom"
+            android:checked="false"
+            android:drawableTop="@drawable/main_tab_4"
+            android:text="设置"/>
+    </d.dao.easylife.ui.widget.AutoRadioGroup>
+
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package d.dao.easylife.api;
 
+import d.dao.easylife.bean.ip.Ip;
 import d.dao.easylife.bean.joke.BaseJokeFirstData;
 import d.dao.easylife.bean.joke.JokeFirst;
 import d.dao.easylife.bean.news.News;
@@ -35,5 +36,10 @@ public interface ApiService {
     //机器人
     @GET("/robot/index")
     Observable<RobotResponseMsg> loadRobot(@Query("info") String info, @Query("key") String key);
+
+    //http://apis.juhe.cn/ip/ip2addr?ip=www.juhe.cn&key=appkey
+    //ip查询
+    @GET("/ip/ip2addr")
+    Observable<Ip> queryIp(@Query("ip") String ip,@Query("key") String key);
 
 }

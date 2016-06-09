@@ -10,6 +10,13 @@ public class BaseUrl {
     public static final String ROBOT = "http://op.juhe.cn";//机器人接口
     public static final String ROBOT_KEY = "7f4589aca72ee731e41cb1325a87aab6";//机器人key
 
+    public static final String IP = "http://apis.juhe.cn";//机器人接口
+    public static final String IP_KEY = "1ae4ffb3e93631bafcb09be81c12f702";//机器人key
+
+
+
+
+
 
 
 

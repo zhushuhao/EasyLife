@@ -291,6 +291,10 @@ public class MainActivity extends BaseToolbarActivity
 
             //常用查询
             case R.id.nav_find:
+                mDrawer.closeDrawer(GravityCompat.START);
+                NavigationManager.gotoActivity(mContext,QueryActivity.class);
+
+
                 break;
 
             //分享
@@ -340,7 +344,7 @@ public class MainActivity extends BaseToolbarActivity
                     if (data2.getBehot_time() == timeStamp) {
                         temp.remove(data2);
                         i++;
-                        Log.e("i", "" + i);
+//                        Log.e("i", "" + i);
                     }
                 }
             }

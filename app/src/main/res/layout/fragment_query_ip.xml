@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20px"
+    tools:context=".ui.QueryActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20px"
+        android:background="@drawable/bg_query_card"
+        android:padding="20px">
+
+        <TextView
+            android:id="@+id/tv_query"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_tv"
+            android:gravity="center_vertical"
+            android:text="查询"
+            android:textColor="#fff"
+            android:textSize="44px" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="2px"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20px"
+            android:layout_toLeftOf="@id/tv_query"
+            android:background="#fff" />
+
+        <EditText
+            android:id="@+id/et_ip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20px"
+            android:layout_toLeftOf="@id/divider"
+            android:background="@null"
+            android:hint="ip地址"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
+            android:textSize="36px" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:layout_centerInParent="true">
+
+
+        <TextView
+            android:id="@+id/tv_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="北京"
+            android:textSize="80px" />
+
+        <TextView
+
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_area"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20px"
+            android:text="移动"
+            android:textColor="#aa1826e7"
+            android:textSize="60px" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

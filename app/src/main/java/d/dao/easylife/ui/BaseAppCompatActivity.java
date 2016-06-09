@@ -4,12 +4,13 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.zhy.autolayout.AutoLayoutActivity;
+
 /**
  * Created by dao on 5/29/16.
  */
-public abstract class BaseAppCompatActivity extends AppCompatActivity {
+public abstract class BaseAppCompatActivity extends AutoLayoutActivity{
     private ProgressDialog pd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
         this.initData();
         this.initListeners();
     }
+
 
     //布局ID
     protected abstract int getLayoutId();

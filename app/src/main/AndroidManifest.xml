@@ -46,6 +46,10 @@
             android:name=".ui.RobotActivity"
             android:label="机器人"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ui.QueryActivity"
+            android:label="常用查询"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

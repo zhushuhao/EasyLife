@@ -12,7 +12,7 @@
 
     <color name="test_appbar">#91062b</color>
     <color name="tv_bg">#88888888</color>
-    <color name="transparent">#ffffffff</color>
+    <color name="transparent">#00000000</color>
 
 
 </resources>

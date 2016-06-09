@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.crypto.spec.RC2ParameterSpec;
 
+import d.dao.easylife.bean.ip.BaseIpData;
+import d.dao.easylife.bean.ip.Ip;
 import d.dao.easylife.bean.joke.BaseJokeFirstData;
 import d.dao.easylife.bean.joke.JokeFirst;
 import d.dao.easylife.bean.news.BaseNewsData;
@@ -17,6 +19,7 @@ import d.dao.easylife.bean.weather.BaseWeatherData;
 import d.dao.easylife.bean.weather.Weather;
 import d.dao.easylife.model.impl.FirstJokeModel;
 import d.dao.easylife.model.impl.NewsModel;
+import d.dao.easylife.model.impl.QueryIpModel;
 import d.dao.easylife.model.impl.RobotModel;
 import d.dao.easylife.model.impl.WeatherModel;
 import d.dao.easylife.utils.RxUtils;
@@ -34,6 +37,7 @@ public class DataManager {
     private FirstJokeModel mFirstJokeModel;//笑话1
     private WeatherModel mWeatherModel;//天气
     private RobotModel mRobotModel;//机器人
+    private QueryIpModel mQueryIpModel;//查询天气
 
 
     private DataManager() {
@@ -41,6 +45,7 @@ public class DataManager {
         this.mFirstJokeModel = FirstJokeModel.getInstance();
         this.mWeatherModel = WeatherModel.getInstance();
         this.mRobotModel = RobotModel.getInstance();
+        this.mQueryIpModel = QueryIpModel.getInstance();
     }
 
     //单例
@@ -88,14 +93,14 @@ public class DataManager {
 
 
     //获取天气
-    public Observable<List<BaseWeatherData>> loadWeather(String city,int more) {
-        Log.e("datamanager","load");
+    public Observable<List<BaseWeatherData>> loadWeather(String city, int more) {
+        Log.e("datamanager", "load");
 
-        return this.mWeatherModel.loadWeather(city,more).map(new Func1<Weather, List<BaseWeatherData>>() {
+        return this.mWeatherModel.loadWeather(city, more).map(new Func1<Weather, List<BaseWeatherData>>() {
             @Override
             public List<BaseWeatherData> call(Weather weather) {
-                Log.e("datamanager","load2");
-                Log.e("weather",weather.toString());
+                Log.e("datamanager", "load2");
+                Log.e("weather", weather.toString());
                 return weather.detail;
             }
         })
@@ -103,13 +108,25 @@ public class DataManager {
     }
 
     // 机器人
-    public Observable<BaseRobotResponseData> loadRobot(String info,String key){
-        return this.mRobotModel.loadRobot(info,key).map(new Func1<RobotResponseMsg, BaseRobotResponseData>() {
+    public Observable<BaseRobotResponseData> loadRobot(String info, String key) {
+        return this.mRobotModel.loadRobot(info, key).map(new Func1<RobotResponseMsg, BaseRobotResponseData>() {
             @Override
             public BaseRobotResponseData call(RobotResponseMsg robotResponseMsg) {
                 return robotResponseMsg.result;
             }
         }).compose(RxUtils.<BaseRobotResponseData>applyIOToMainThreadSchedulers());
+    }
+
+    //查询ip
+    public Observable<BaseIpData> queryIp(String ip, String key) {
+        return this.mQueryIpModel.queryIp(ip, key)
+                .map(new Func1<Ip, BaseIpData>() {
+                    @Override
+                    public BaseIpData call(Ip ip) {
+                        return ip.result;
+                    }
+                })
+                .compose(RxUtils.<BaseIpData>applyIOToMainThreadSchedulers());
     }
 
 }
