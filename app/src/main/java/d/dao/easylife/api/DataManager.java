@@ -93,6 +93,7 @@ public class DataManager {
 
 
     //获取天气
+
     public Observable<List<BaseWeatherData>> loadWeather(String city, int more) {
         Log.e("datamanager", "load");
 
